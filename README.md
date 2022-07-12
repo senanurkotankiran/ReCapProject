@@ -1,4 +1,4 @@
-# ReCapProject
+# RentACar -- Araba Kiralama Sistemi
 Bu projede araba kiralama sistemi oluşturulmaktadır.Güncellenmeye devam eden projedir.
 Bu zamana kadar yapılanlar;
 * Car,Brand,Color nesneleri oluşturuldu.
