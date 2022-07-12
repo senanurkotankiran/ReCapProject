@@ -5,5 +5,6 @@ Bu zamana kadar yapılanlar;
 * Entity framework yapısı oluşturuldu.(Guncellenmeye acık)
 * Örnek servis olarak GetCarsByBrandId , GetCarsByColorId servislerini yazıldı.
 * Sisteme yeni araba eklendiğinde aşağıdaki kurallara göre çalıştırıldı:
+
       **Araba ismi minimum 2 karakter olmalıdır
       **Araba günlük fiyatı 0'dan büyük olmalıdır.
