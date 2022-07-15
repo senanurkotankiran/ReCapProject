@@ -13,14 +13,37 @@ namespace ConsoleUI
             //CarTest();
 
             //BrandTest();
+            // SuccessTest();
 
+            Rental rental1 = new Rental();
+            rental1.CarId = 1;
+            rental1.CustomerId = 1;
+            rental1.RentDate = new DateTime(2022,7,21);
+            rental1.ReturnDate = new DateTime(2022, 7, 29);
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Add(rental1);
+            
+            
+
+        }
+
+        private static void SuccessTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
-            {
-                Console.WriteLine(car.CarName + "  " + car.BrandName + " " + car.ColorName + " " + car.DailyPrice);
-            }
-           
 
+            if (carManager.GetCarDetails().Success)
+            {
+                foreach (var car in carManager.GetCarDetails().Data)
+                {
+                    Console.WriteLine(car.CarName + "  " + car.BrandName + " " + car.ColorName + " " + car.DailyPrice);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine(carManager.GetCarDetails().Message);
+            }
         }
 
         private static void BrandTest()
@@ -30,10 +53,10 @@ namespace ConsoleUI
 
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             brandManager.Add(brand1);
-            foreach (var brand in brandManager.GetAll())
-            {
-                Console.WriteLine(brand.BrandName);
-            }
+            //foreach (var brand in brandManager.GetAll())
+            //{
+            //    Console.WriteLine(brand.BrandName);
+            //}
         }
 
         private static void CarTest()
@@ -51,10 +74,10 @@ namespace ConsoleUI
 
 
 
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.CarName);
-            }
+            //foreach (var car in carManager.GetAll())
+            //{
+             //   Console.WriteLine(car.CarName);
+            //}
         }
     }
 }
