@@ -8,3 +8,7 @@ Bu zamana kadar yapılanlar;
 
       **Araba ismi minimum 2 karakter olmalıdır
       **Araba günlük fiyatı 0'dan büyük olmalıdır.
+      
+* Temel islemler icin Core katmanı oluturuldu.
+* CRUD operasyonlari iyilestirildi.
+* Arabalar su bilgiler olacak sekilde listelendi. CarName, BrandName, ColorName, DailyPrice. (Dto olusturulup 3 tablo join edildi)
