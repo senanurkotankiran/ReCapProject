@@ -14,18 +14,25 @@ namespace ConsoleUI
 
             //BrandTest();
             // SuccessTest();
+            //RentalTest();
 
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            foreach (var rental in rentalManager.GetRentalDetails().Data)
+            {
+                Console.WriteLine(rental.CarName + "  " + rental.RentDate );
+            }
+        }
+
+        private static void RentalTest()
+        {
             Rental rental1 = new Rental();
             rental1.CarId = 1;
             rental1.CustomerId = 1;
-            rental1.RentDate = new DateTime(2022,7,21);
-            rental1.ReturnDate = new DateTime(2022, 7, 29);
+            rental1.RentDate = new DateTime(2022, 7, 21);
+            rental1.RentDate = new DateTime(2022, 7, 28);
 
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             rentalManager.Add(rental1);
-            
-            
-
         }
 
         private static void SuccessTest()
