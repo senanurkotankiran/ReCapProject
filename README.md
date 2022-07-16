@@ -14,4 +14,6 @@ Bu zamana kadar yapılanlar;
 * Arabanın kiralanma bilgisini tutan tablo oluşturuldu. Rentals-->Id, CarId, CustomerId, RentDate(Kiralama Tarihi), ReturnDate(Teslim Tarihi). Araba teslim edilmemişse ReturnDate null'dır.
 * Arabayı kiralama imkanını kodlandı. Rental-->Add
 * Arabanın kiralanabilmesi için arabanın teslim edilmesi gerekmektedir.
+* WebAPI katmanını kuruldu.
+* Postmanla test edildi.
 
