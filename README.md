@@ -19,3 +19,4 @@ Bu zamana kadar yapılanlar;
 * Autofac desteği eklendi.
 * FluentValidation desteği eklendi.
 * AOP desteği eklendi.
+* ValidationAspect eklendi
