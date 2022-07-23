@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="İmages2\**" />
+    <Content Remove="İmages2\**" />
+    <EmbeddedResource Remove="İmages2\**" />
+    <None Remove="İmages2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
   </ItemGroup>
 

@@ -3,12 +3,14 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -25,11 +27,16 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+            IResult result = BusinessRules.Run(CheckIfCarCountOfBrand(car.BrandId),
+                CheckIfCarNameExists(car.CarName));
+            if (result != null)
+            {
+                return result;
+            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
 
-                
-                _carDal.Add(car);
-                return new Result(true,Messages.CarAdded);
-           
+
         }
 
         public IResult Delete(Car car)
@@ -70,5 +77,25 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
+
+        private IResult CheckIfCarCountOfBrand(int brandId)
+        {
+            var result = _carDal.GetAll(c => c.BrandId == brandId).Count;
+            if (result>=15)
+            {
+                return new  ErrorResult();
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCarNameExists(string carName)
+        {
+            var result = _carDal.GetAll(c => c.CarName == carName).Any();
+            if (result)
+            {
+                return new ErrorResult("Bu isimde araba zaten mevcut");
+            }
+            return new SuccessResult();
+        }   
     }
 }
