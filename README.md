@@ -16,4 +16,7 @@ Bu zamana kadar yapılanlar;
 * Arabanın kiralanabilmesi için arabanın teslim edilmesi gerekmektedir.
 * WebAPI katmanını kuruldu.
 * Postmanla test edildi.
-
+* Autofac desteği eklendi.
+* FluentValidation desteği eklendi.
+* AOP desteği eklendi.
+* ValidationAspect eklendi
