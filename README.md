@@ -32,3 +32,4 @@ Bu zamana kadar yapılanlar;
           * Eğer bir arabaya ait resim yoksa, default bir resim gösteriniz. Bu resim şirket logonuz olabilir. (Tek elemanlı liste)
           
 * JWT entegrasyonu eklendi.
+* Cache, Transaction ve Performance aspectleri eklendi
