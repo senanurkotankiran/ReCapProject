@@ -36,5 +36,35 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+
+
+
+        public List<CarFilterDto> GetFilteredCars(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
+        {
+            using (ReCapProjectDbContext context = new ReCapProjectDbContext())
+            {
+                var result = from car in context.Cars
+                             join color in context.Colors
+                             on car.ColorId equals color.ColorId
+                             join brand in context.Brands
+                             on car.BrandId equals brand.BrandId
+                             where car.BrandId == brandId
+                             && car.ColorId == colorId
+                             && car.DailyPrice >= minDailyPrice
+                             && car.DailyPrice <= maxDailyPrice
+                             select new CarFilterDto
+                             {
+                                 CarName=car.CarName,
+                                 BrandName = brand.BrandName,
+                                 ColorName = color.ColorName,
+                                 DailyPrice = car.DailyPrice,
+                                 ModelYear=car.ModelYear
+
+                             };
+                return result.ToList();
+
+            }
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace Business.Concrete
         {
             IResult result = BusinessRules.Run(CheckIfCarCountOfBrand(car.BrandId),
                 CheckIfCarNameExists(car.CarName));
+
             if (result != null)
             {
                 return result;
@@ -91,6 +92,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.ColorId == id));
         }
 
+        public IDataResult<List<CarFilterDto>> GetFilteredCars(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
+        {
+            return new SuccessDataResult<List<CarFilterDto>>(_carDal.GetFilteredCars(brandId, colorId, minDailyPrice, maxDailyPrice));
+        }
+
         public IResult Update(Car car)
         {
             _carDal.Update(car);
@@ -116,6 +122,21 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarNameAlreadyExists);
             }
             return new SuccessResult();
-        }   
+        }
+
+
+        public IDataResult<List<Car>> GetCarDetailsByBrandIdAndColorId(int brandId, int colorId)
+        {
+            var resultByBrandId = this.GetCarsByBrandId(brandId);
+
+            if (resultByBrandId.Success)
+            {
+                var result = resultByBrandId.Data.Where(c => c.ColorId == colorId).ToList();
+
+                return new SuccessDataResult<List<Car>>(result);
+            }
+
+            return new ErrorDataResult<List<Car>>(resultByBrandId.Message);
+        }
     }
 }

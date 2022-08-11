@@ -42,7 +42,7 @@ namespace WebAPI
         {
 
             services.AddControllers();
-
+            services.AddCors();
            
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -73,13 +73,13 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
-           
-            app.UseAuthorization();
             app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()
